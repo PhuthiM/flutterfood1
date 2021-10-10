@@ -62,19 +62,19 @@ class _HomePageState extends State<HomePage> {
                   ClipRRect(
                       borderRadius: BorderRadius.circular(37.5),
                       child: PlatformAwareAssetImage(
-                        assetPath: 'assets/images/profile.png',
+                        assetPath: 'assets/images/profile.jpg',
                         width: 75.0,
                         height: 75.0,
                         fit: BoxFit.cover,
                       )),
                   SizedBox(height: 6.0),
                   Text(
-                    'Promlert Lovichit',
+                    'Phuthita Sookhong',
                     style: TextStyle(fontSize: 20.0, color: Colors.white),
                   ),
                   //SizedBox(height: 2.0),
                   Text(
-                    'promlert@gmail.com',
+                    'sookhong_p@silpakorn.edu',
                     style: TextStyle(
                         fontSize: 14.0, color: Colors.white.withOpacity(0.6)),
                   ),

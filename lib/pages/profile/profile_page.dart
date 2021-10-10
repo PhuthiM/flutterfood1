@@ -23,15 +23,15 @@ class ProfilePage extends StatelessWidget {
               width: 180.0,
               height: 180.0,
               child: PlatformAwareAssetImage(
-                assetPath: 'assets/images/profile.png',
+                assetPath: 'assets/images/profile.jpg',
               ),
             ),
           ),
           SizedBox(height: 24.0),
-          Text('Promlert Lovichit',
+          Text('Phuthita Sookhong',
               style: Theme.of(context).textTheme.headline1),
           SizedBox(height: 8.0),
-          Text('promlert@gmail.com', style: TextStyle(fontSize: 20.0)),
+          Text('sookhong_p@silpakorn.edu', style: TextStyle(fontSize: 20.0)),
         ],
       ),
     );

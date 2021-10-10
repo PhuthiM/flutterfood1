@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_food/pages/home/home_page.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login';
@@ -133,27 +136,44 @@ class _LoginPageState extends State<LoginPage> {
   void _handleClickButton(int num) {
     print('You pressed $num');
 
-    setState(() {
+    setState(()  {
       if (num == -1) {
         if (input.length > 0) input = input.substring(0, input.length - 1);
       } else {
         input = '$input$num';
       }
 
-      if (input.length == pin.length) {
-        if (input == pin) {
-          /*Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
-          );*/
-          Navigator.pushReplacementNamed(context, HomePage.routeName);
-        } else {
-          _showMaterialDialog('ERROR', 'Invalid PIN. Please try again.');
-        }
-
+      if (input.length == 6) {
+        checkpass();
         input = '';
       }
     });
+  }
+
+  Future<void> checkpass() async {
+    var url = Uri.parse('https://cpsu-test-api.herokuapp.com/login');
+    var response = await http.post(url, body: {'pin': '$input'}); //asynchronous
+
+    Map<String, dynamic> jsonBody = json.decode(response.body);
+    String? status = jsonBody['status'];
+    String? message = jsonBody['message'];
+    bool data = jsonBody['data'];
+
+    if (data == true) {
+      /*Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const HomePage()),
+          );*/
+      print('STATUS: $status');
+      print('MESSAGE : $message');
+      print('data : $data');
+      Navigator.pushReplacementNamed(context, HomePage.routeName);
+    } else {
+      _showMaterialDialog('ERROR', 'Invalid PIN. Please try again.');
+      print('STATUS: $status');
+      print('MESSAGE : $message');
+      print('data : $data');
+    }
   }
 
   void _showMaterialDialog(String title, String msg) {
